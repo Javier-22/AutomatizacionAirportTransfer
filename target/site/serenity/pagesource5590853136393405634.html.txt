@@ -1,0 +1,1519 @@
+<html class="no-js" lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="dns-prefetch preconnect" href="https://ajaxgeo.cartrawler.com">
+		<link rel="stylesheet" type="text/css" href="https://ajaxgeo.cartrawler.com/PCI/paymentform/css/gt.css">
+		<title></title>
+
+	<script type="text/javascript">
+		var PCI = {};
+		var A11yFormErrorHandler = (function(Handler) {
+		  Handler = function(config) {
+		    var me = this;
+		    me.inputTypes = ['input', 'select', 'textarea', 'legend', 'optgroup', 'button', 'datalist', 'keygen', 'output'];
+		    me.IR = null;
+		    me.form = config && config.parent || null;
+		    me.inputs = {};
+
+		    setTimeout(function() {
+		    	me.inputs = me.updateInputsRef(me.form);
+		    });
+		  };
+
+		  Handler.prototype.onErrorSearchForm = function (errors, inputsRef) {
+		  	var errs = this.normalizeErrors(errors);
+		  	if(Object.keys(inputsRef).length ===0) return;
+		    this.readErrors(errs, inputsRef.ariaLive);
+		    this.focusFirstErrorInput(errs, inputsRef);
+		    this.updateLocalErrorMessageToRead(errs, inputsRef);
+		  };
+
+		  Handler.prototype.visualHidden = function(ele) {
+		    if(!ele) return false;
+		    ele.style.cssText = [
+		      'position: absolute',
+		      'clip: 0 0 0 0',
+		      'width: 1px',
+		      'height: 0',
+		      'margin-left: -1px',
+		      'overflow: hidden'
+		    ].join(';');
+		    return ele;
+		  };
+
+		  Handler.prototype.updateInputsRef = function(form) {
+		    form = form || this.form;
+		    if(!form) return;
+		    var ariaLiveEle, input, i, ln, id, label, inputs = {},
+		      ins = form.querySelectorAll.call(form, this.inputTypes.join(','));
+
+		    for(ln = ins.length, i = 0; i  < ln; i++ ) {
+		      id = ins[i].id;
+		      label = form.querySelector('label[for=\''+ id +'\']');
+		      inputs[id] = inputs[id] || {
+		        ele: ins[i],
+		        label: label
+		      };
+		    }
+
+		    inputs.ariaLive = this.initAriaLiveEle(form);
+		    return inputs;
+		  };
+
+		  Handler.prototype.initAriaLiveEle = function(form) {
+		    var ele = document.createElement('span');
+		    ele = this.visualHidden(ele);
+		    ele.className = 'ct-visual-hidden';
+		    ele.setAttribute('aria-live', 'assertive');
+		    form.appendChild(ele);
+		    return ele;
+		  };
+
+		  Handler.prototype.readErrors = function(errors, ariaLiveEle) {
+		    if(!errors || !ariaLiveEle) return false;
+		    var errorToRead = this.genErrorToRead(errors);
+		    this.updateAriaLive(errorToRead, ariaLiveEle);
+		  };
+
+		  Handler.prototype.updateLocalErrorMessageToRead = function(errors, inputsRef) {
+		    for(var i in inputsRef) {
+		      this.setAriaLabel(errors[i] ? errors[i] : '', inputsRef[i].label);
+		    }
+		  };
+
+		  Handler.prototype.setAriaLabel = function(errorMessage, ele) {
+		    if(ele && ele.setAttribute) {
+		      ele.setAttribute('aria-label', errorMessage);
+		    }
+		    return ele;
+		  };
+
+		  Handler.prototype.updateAriaLive = function(errorToRead, ariaLiveEle) {
+		    if(ariaLiveEle) {
+		    	ariaLiveEle.innerText = '';
+		      ariaLiveEle.innerText = errorToRead || '';
+		    }
+		  };
+
+		  Handler.prototype.genErrorToRead = function(errors) {
+		    var errorToRead = 'you have ' + Object.keys(errors).length + ' invalid inputs. ',
+		      i;
+
+		    for(i in errors) {errorToRead += ' ' + errors[i]; }
+		    return errorToRead;
+		  };
+
+		  Handler.prototype.normalizeErrors = function(errors) {
+		    var r = {};
+		    for(var i in errors) {
+		      if(typeof errors[i] === 'string') {
+		        r[i] = errors[i];
+		      }
+		    }
+		    return r;
+		  };
+
+		  Handler.prototype.focusFirstErrorInput = function(errors, inputsRef) {
+		    inputsRef = inputsRef || this.inputs;
+		    if(!inputsRef || !inputsRef[Object.keys(errors)[0]]) return false;
+		    var inputToFocus = inputsRef[Object.keys(errors)[0]].ele;
+		    if(inputToFocus) inputToFocus.focus();
+		  };
+
+		  return Handler;
+		})(A11yFormErrorHandler || {});
+  </script>
+
+	<style type="text/css">
+	.ct-form-field .ct-radio input[type="checkbox"]+label:before,
+	.ct-form-field .ct-checkbox input[type="checkbox"]+label.ct-error:before {
+	    content: "\e62b";
+	    color: red;
+	}
+
+</style>
+<script type="text/javascript" charset="utf-8" async="" crossorigin="anonymous" src="https://includes.ccdc02.com/cardinalcruise/v1/4e7a79d181ff9ae57577/1.4e7a79d181ff9ae57577.songbird.js"></script><style type="text/css">.Cardinal-paymentButton{cursor:pointer;margin:3px}.discoverWallet{width:50em;max-height:31.25em}@media screen and (max-width:375px){.discoverWallet{width:23.875em}}.cardinal-stealth{position:absolute!important;display:block!important;top:-1000px!important;left:-1000px!important;z-index:-1000!important;width:1px!important;height:1px!important}#Cardinal-discoverWallet-IFrame{width:100%;height:100%}.cardinalOverlay-open.seamless{padding:0;border-radius:0}</style><script type="text/javascript" charset="utf-8" async="" crossorigin="anonymous" src="https://includes.ccdc02.com/cardinalcruise/v1/4e7a79d181ff9ae57577/12.4e7a79d181ff9ae57577.songbird.js"></script><script type="text/javascript" charset="utf-8" async="" crossorigin="anonymous" src="https://includes.ccdc02.com/cardinalcruise/v1/4e7a79d181ff9ae57577/11.4e7a79d181ff9ae57577.songbird.js"></script><script type="text/javascript" charset="utf-8" async="" crossorigin="anonymous" src="https://includes.ccdc02.com/cardinalcruise/v1/4e7a79d181ff9ae57577/3.4e7a79d181ff9ae57577.songbird.js"></script><style type="text/css">.cardinalOverlay-mask{position:fixed;z-index:999998;top:0;left:0;opacity:0;display:none;width:100%;height:100%;transition:opacity 1ms ease;background:rgba(0,0,0,.6)}.cardinalOverlay-content{position:fixed;z-index:999999;top:50%;left:50%;opacity:0;padding:24px 20px;transform:translate(-50%,-50%);border-radius:2px;background:#fff}@media screen and (max-width:425px){.cardinalOverlay-content{max-width:410px;padding:.5em}}@media screen and (max-width:375px){.cardinalOverlay-content{max-width:365px;padding:.5em}}@media screen and (max-height:375px) and (orientation:landscape){.cardinalOverlay-content{max-height:365px;padding-top:.5em;padding-bottom:.5em}}@media screen and (max-width:320px){.cardinalOverlay-content{max-width:310px;padding:.5em}}@media screen and (max-height:320px) and (orientation:landscape){.cardinalOverlay-content{max-height:310px;padding-top:.5em;padding-bottom:.5em}}.legacy{-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter:alpha(opacity=50);background-color:#000}.cardinalOverlay-closeButton{font-family:Helvetica,Arial,sans-serif;font-size:25px;line-height:12px;position:absolute;top:2px;right:-3px;cursor:pointer;color:#999;border:0;outline:none;background:none}.cardinalOverlay-closeButton:hover{color:#000}.cardinalOverlay-content.cardinalOverlay-open,.cardinalOverlay-mask.cardinalOverlay-open{display:block;opacity:1;transition:opacity .5s ease}.shadow-effect{-ms-box-shadow:0 6px 22px -3px #000;-o-box-shadow:0 6px 22px -3px #000;box-shadow:0 6px 22px -3px #000}#Cardinal-MerchantContent{width:100%;float:left}#Cardinal-ModalContent{height:100%;width:100%}@media screen and (max-width:425px){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll;max-width:390px}}@media screen and (max-height:425px) and (orientation:landscape){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll;max-height:360px}}@media screen and (max-width:375px){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll;max-width:350px}}@media screen and (max-height:375px) and (orientation:landscape){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll;max-height:350px}}@media screen and (max-width:320px){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll;max-width:300px}}@media screen and (max-height:320px) and (orientation:landscape){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll;max-height:295px}}@media screen and (min-width:768px) and (max-width:1024px){#Cardinal-ModalContent{-webkit-overflow-scrolling:touch;overflow-y:scroll}}#Cardinal-ModalContent.size-01,#Cardinal-ModalContent.size-02{height:400px}#Cardinal-ModalContent.size-03{height:600px}#Cardinal-ModalContent.size-04{height:400px}#Cardinal-CCA-IFrame{display:block;margin:0 auto}@media screen and (max-width:425px){#Cardinal-CCA-IFrame{max-width:390px}}@media screen and (max-height:425px) and (orientation:landscape){#Cardinal-CCA-IFrame{max-height:360px}}@media screen and (max-width:375px){#Cardinal-CCA-IFrame{max-width:350px}}@media screen and (max-height:375px) and (orientation:landscape){#Cardinal-CCA-IFrame{max-height:350px}}@media screen and (max-width:320px){#Cardinal-CCA-IFrame{max-width:300px}}@media screen and (max-height:320px) and (orientation:landscape){#Cardinal-CCA-IFrame{max-height:295px}}.cardinal-hide{display:none}.cardinal-img-responsive{max-width:100%;height:auto;display:block}.cardinal-center-block{display:block;margin:0 auto}.cardinal-text-center{text-align:center}</style></head>
+<body onload="onLoad();" marginwidth="0" marginheight="0">
+<div id="ct-container" class="ct-hybrid-grid">
+    <div autoscroll="false">
+       <div class="ct-grid">
+	 <div class="ct-panel ct-no-padding" style="box-shadow: none;">
+		<div class="ct-component-payment-pci ct-padding">
+			<form class="ct-form ct-margin-top" name="form" id="ct_secure_form" action="paymentform" method="POST" autocomplete="off">
+			<input type="hidden" id="submitConfirm" name="submitConfirm" value="">
+			<input type="hidden" name="type" value="OTA_VehResRQ">
+			<input type="hidden" id="msg" name="msg" value="">
+			<input type="hidden" name="chkTCs" value="false" id="chkTCs">
+			<input type="hidden" name="lang" value="EN">
+			<input type="hidden" name="mobile" value="true">
+                        <input type="hidden" name="css" value="gt">
+			<input type="hidden" name="deBundle" value="false">
+			<input type="hidden" name="hideButton" value="true">
+			<input type="hidden" name="debitCardCheck" value="false">
+			<input type="hidden" id="enableDCC" name="enableDCC" value="false">
+			<input type="hidden" name="msgDCC" value="">
+			<input type="hidden" name="logMessage" id="logMessage" value="">
+
+			<input type="hidden" id="creditCardValidForm" name="creditCardValidForm" value="">
+			<input type="hidden" id="submitDCC" name="submitDCC" value="">
+
+			<input type="hidden" id="paymentTxId" name="paymentTxId" value="SUL20220203202259_0731619">
+			<input type="hidden" id="psd2Enabled" name="psd2Enabled" value="true">
+			<input type="hidden" id="JWTSessionID" name="JWTSessionID" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJTVUwyMDIyMDIwMzIwMjI1OV8wNzMxNjE5IiwiaWF0IjoxNjQzOTE5Nzc5LCJPcmdVbml0SWQiOiI1Y2MxYmRmNzAxNzI5ZDBjODgxZWU0ZmYiLCJQYXlsb2FkIjp7Ik9yZGVyRGV0YWlscyI6eyJPcmRlck51bWJlciI6IjEiLCJBbW91bnQiOiIxMDAwMCIsIkN1cnJlbmN5Q29kZSI6IkVVUiJ9fSwiT2JqZWN0aWZ5UGF5bG9hZCI6dHJ1ZSwiaXNzIjoiNWQyMzZiMGFhZGIxNTY0MThjOThkYTc5In0.LH01XRO7iJnPYe_pBwjE0f1YiKbJfmYwD2iZRo9xzQQ">
+			<input type="hidden" id="authSessionID" name="authSessionID" value="0_d41e5775-152d-403a-a1c9-f32fc237e2b9">
+			<input type="hidden" id="authOrderID" name="authOrderID" value="SUL20220203202259_0731619">
+			<input type="hidden" id="authASCUrl" name="authASCUrl" value="">
+			<input type="hidden" id="authPayload" name="authPayload" value="">
+			<input type="hidden" id="authTransactionId" name="authTransactionId" value="">
+            <input type="hidden" id="authMid" name="authMid" value="">
+			<input type="hidden" id="authCAVV" name="authCAVV" value="">
+			<input type="hidden" id="authECI" name="authECI" value="">
+			<input type="hidden" id="authDsTransactionId" name="authDsTransactionId" value="">
+            <input type="hidden" id="authXId" name="authXId" value="">
+            <input type="hidden" id="authThreeDsVersion" name="authThreeDsVersion" value="">
+			<input type="hidden" id="authAmount" name="authAmount" value="">
+			<input type="hidden" id="authCurrency" name="authCurrency" value="">
+			<input type="hidden" id="authSongbird" name="authSongbird" value="https://songbird.cardinalcommerce.com/cardinalcruise/v1/songbird.js">
+			<input type="hidden" id="authWindowSize" name="authWindowSize" value="">
+			<input type="hidden" name="dropdownLabels" value="">
+
+							<span class="ct-required">* Required</span>
+			<div class="ct-grid ct-pci-card-number">
+				<div class="ct-grid-unit-6-16 ct-text-right ct-pci-card-number-label"><label>Card Number *</label></div>
+				<div class="ct-grid-unit-5-16 ct-pci-card-number-content">
+					<div name="cardNumber" class="ct-form-field ct-credit-card-number-field">
+						<input class="ct-input" id="cardNumber" name="cardNumber" data-cardinal-field="AccountNumber" maxlength="16" type="tel" value="" placeholder="Card Number">
+						<div id="ctCreditCardType" class="ct-credit-card-number-type ct-credit-card-number-type-visa"></div>
+					</div>
+				</div>
+				<div class="ct-grid-unit-5-16 ct-relative" id="alertCardNumber"><span class="ct-indicator ct-valid"><i class="ct-icon-checkmark"></i></span></div>
+		  </div>
+
+		  <div class="ct-grid ct-pci-card-name">
+		    <div class="ct-grid-unit-6-16 ct-text-right ct-pci-card-name-label"><label>Name (as it appears on the card) *</label></div>
+		    <div class="ct-grid-unit-5-16 ct-pci-card-name-content">
+				<div class="ct-form-field">
+					<input class="ct-input" id="cardName" name="cardHolderName" maxlength="30" value="" placeholder="Name on card">
+				</div>
+		    </div>
+		    <div class="ct-grid-unit-5-16 ct-relative" id="alertCardName"><span class="ct-indicator ct-valid"><i class="ct-icon-checkmark"></i></span></div>
+		  </div>
+
+		  <div class="ct-grid ct-pci-date">
+		     <div class="ct-grid-unit-6-16 ct-text-right ct-pci-card-exp-label"><label>Card Expiration Date *</label></div>
+		     <div class="ct-grid-unit-5-16 ct-pci-card-exp-content">
+			<div class="ct-grid">
+								 	<div class="ct-floatl" style="width: 49%">
+			  			      <div class="ct-form-field">
+				 <div class="ct-select-wrapper">
+					 				    <select class="ct-select" name="expiryDateMonth" id="expiryDateMonth">
+					<option value="" disabled="" selected="">Month</option>
+										    						<option value="01">01 - Jan</option>
+					    										    						<option value="02">02 - Feb</option>
+					    										    						<option value="03">03 - Mar</option>
+					    										    						<option value="04">04 - Apr</option>
+					    										    						<option value="05">05 - May</option>
+					    										    						<option value="06">06 - Jun</option>
+					    										    						<option value="07">07 - Jul</option>
+					    										    						<option value="08">08 - Aug</option>
+					    										    						<option value="09">09 - Sep</option>
+					    										    						<option value="10">10 - Oct</option>
+					    										    						<option value="11">11 - Nov</option>
+					    										    						<option value="12">12 - Dec</option>
+					    									    </select>
+				 </div>
+			      </div>
+			   </div>
+								 	<div class="ct-floatr" style="width: 49%">
+			  			      <div class="ct-form-field">
+				 <div class="ct-select-wrapper">
+					 				    <select class="ct-select" name="expiryDateYear" id="expiryDateYear">
+				       <option value="" disabled="" selected="">Year</option>
+										    						<option value="22">2022</option>
+					    										    						<option value="23">2023</option>
+					    										    						<option value="24">2024</option>
+					    										    						<option value="25">2025</option>
+					    										    						<option value="26">2026</option>
+					    										    						<option value="27">2027</option>
+					    										    						<option value="28">2028</option>
+					    										    						<option value="29">2029</option>
+					    										    						<option value="30">2030</option>
+					    										    						<option value="31">2031</option>
+					    										    						<option value="32">2032</option>
+					    									    </select>
+				 </div>
+			      </div>
+			   </div>
+			</div>
+		     </div>
+		    <div class="ct-grid-unit-5-16 ct-relative" id="alertDate"><span class="ct-indicator ct-valid"><i class="ct-icon-checkmark"></i></span></div>
+		  </div>
+		  <div class="ct-grid ct-pci-card-cvc">
+		     <div class="ct-grid-unit-6-16 ct-text-right ct-pci-card-cvc-label"><label>Security Code *</label></div>
+		     <div class="ct-grid-unit-2-16 ct-pci-card-cvc-content">
+						<div class="ct-form-field"><input class="ct-input" id="seriesCode" name="seriesCode" placeholder="CVC" maxlength="4" type="tel" value=""></div>
+		     </div>
+		     <div class="ct-grid-unit-3-16"><!--<i class="ct-icon-question-sign" ct-popover="Your CVC/CV2 code is the 3-digit number on the back of your card or the 4-digit number found on the front of your American Expresss card." ct-popover-class="ct-series-code-popover-content" ct-popover-placement="right" ct-popover-width="400"></i>--></div>
+		     <div class="ct-grid-unit-5-16 ct-relative">
+
+		     </div>
+		     <div class="ct-grid-unit-3-16">
+		     	<i id="infoSecureCode" class="ct-icon-question-sign" ct-popover="Your CVC/CV2 code is the 3-digit number on the back of your card or the 4-digit number found on the front of your American Expresss card." ct-popover-class="ct-series-code-popover-content" ct-popover-placement="right" ct-popover-width="370" ct-popover-shift-vertical="-10" ct-popover-shift-horizontal="-15"></i>
+		     	</div>
+		     <div class="ct-grid-unit-5-16 ct-relative" id="alertSeriesCode"><span class="ct-indicator ct-valid"><i class="ct-icon-checkmark"></i></span></div>
+		  </div>
+						<div id="ct-pci-error-container" class="">
+				<div class="ct-pci-error-icon"></div>
+				<div class="ct-pci-field-error">Please review the highlighted fields</div>
+			</div>
+					  
+			
+  		  			<input type="hidden" name="ct_terms_conditions" value="true">
+  		  
+		
+	       <span class="ct-visual-hidden" aria-live="assertive" style="position: absolute; width: 1px; height: 0px; margin-left: -1px; overflow: hidden;"></span></form>
+	    </div>
+	 </div>
+       </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	// start init the a11y functinality
+	var form = document.querySelector('#ct_secure_form');
+	var a11yFormErrorHandler = new A11yFormErrorHandler({
+		parent: form
+	});
+</script>
+
+
+<script type="text/javascript">
+
+	function onLoad() {
+
+		var status = "onLoad";
+		var isObject = function(obj) {
+			return (obj && typeof obj === 'object');
+		};
+		var toObject = function(str) {
+			var obj;
+			try {
+				obj = JSON.parse(decodeURIComponent(str));
+			} catch (e) {}
+			return obj;
+		};
+		var runAction = function (actionName, payload) {
+
+			//Kill timer event for checking DCC
+			if(typeof PCI.timerDCC != 'undefined') {
+				clearTimeout(PCI.timerDCC);
+				PCI.timerDCC = undefined;
+			}
+
+			if (actionName === 'validateForm') {
+				if (typeof PCI.validate === 'function') {
+					PCI.tag('PCIMessage','validate');
+					PCI.validate();
+					return true;
+				}
+			}
+			else if (actionName === 'submitForm') {
+				if (typeof PCI.onSubmitForm === 'function') {
+					PCI.tag('PCIMessage','submitForm');
+					PCI.onSubmitForm();
+					return true;
+				}
+			}
+			else if (actionName === 'submitFormConfirm') {
+				if (typeof PCI.onSubmitForm === 'function') {
+					document.getElementById('submitConfirm').value = 'true';
+					PCI.tag('PCIMessage','subFormCon');
+					PCI.onSubmitForm();
+					return true;
+				}
+			}
+			else if (actionName === 'authenticationTotal') {
+				if ( (typeof payload.authAmount != 'undefined') &&
+					(typeof payload.authCurrency != 'undefined') ) {
+					document.getElementById("authAmount").value = payload.authAmount;
+					document.getElementById("authCurrency").value = payload.authCurrency;
+				}
+				return true;
+			}
+			return false;
+		};
+		var debugMsgLen = function() {
+			try {
+				var len = document.getElementById("msg").value.length;
+				PCI.tag('PCImsg_len',len);
+			} catch (e) {
+				PCI.tag('PCImsg_len','error');
+			}
+		};
+
+		
+		
+		
+		
+		
+		
+		
+		
+		//Fire event to parent window everytime page is rendered.
+		parent.postMessage('{"msg": "OTA_VehResRQ" , "action": "onLoad", "type": "' + status + '"}','*');
+
+		PCI.tag('PCIonLoad',status);
+		debugMsgLen();
+
+		//Allow parent window send in a the JSON msg as an event to the form.
+		window.addEventListener('message',function(event) {
+
+			try {
+				PCI.tag('PCIMessage','received');
+
+				//Only process messages which didn't originate from this window.
+				if(event.origin !== window.location.origin) {
+
+					if (isObject(event.data)) {
+						runAction(event.data.action, event.data.payload);
+					}
+					else {
+
+						var dataObject = toObject(event.data);
+						if (!isObject(dataObject) || !dataObject.action || !runAction(dataObject.action, dataObject.payload)) {
+							var msg = event.data.replace(/'/g, "%27");
+
+                            //Only accept message as OTA message, if it contains mandatory tokens
+                            if ( msg.indexOf("CARDNUMBER") > -1 &&
+                                msg.indexOf("CARDHOLDERNAME") > -1 &&
+                                msg.indexOf("SERIESCODE") > -1 &&
+                                msg.indexOf("EXPIREDATE") > -1) {
+                                document.getElementById("msg").value = msg;
+                       		}
+						}
+						debugMsgLen();
+					}
+				}
+			}
+			catch (e) {
+				PCI.tag('PCIMessage','error');
+				parent.postMessage('{"msg": "OTA_VehResRQ", "action": "onError", "type": "window.addEventListener"}','*');
+			}
+		} ,false);
+	}
+</script>
+
+
+<script type="text/javascript">
+(function (win, doc, CT) {
+	CT.ABE = CT.ABE || { Lang: {} };
+
+	// build up JS language lookups from Velocity template.
+	CT.ABE.Lang = {
+		"CardNumberEmptyField" : "Please fill in the card number here.  It is the long number located on the front of the card.",
+		"CardNameEmptyField" : "Please fill in the cardholder's name.",
+		"CardNumberError" : "The number you have entered is incorrect. Please enter the long number located on the front of the card.",
+		"CardNameError" : "The card holders name must not contain numbers.",
+		"CardNumberTypeError" : "We are sorry but the type of card entered is not one we can accept. Please try one of the following payment types:",
+		"DateIncorrect" : "The card expiration date you selected is incorrect. Please select a valid expiration date.",
+		"DatePast" : "The card expiry date has passed.",
+		"SecureCodeError" : "Please fill in the security code here.",
+		"TCError" : "Please accept the Car Hire Terms and Conditions, Booking Terms and Conditions and our Privacy Policy.",
+		"Month" : "Month",
+		"Year" : "Year"
+	};
+	CT.ABE.LangErrorCode = {
+                "CardNumberEmptyField" : "CardNumber.Empty.Error",
+                "CardNameEmptyField" : "NameOnCreditCard.Empty.Error",
+                "CardNumberError" : "CardNumber.NumberInvalid.Error",
+                "CardNameError" : "NameOnCreditCard.Incorrect.Error",
+                "CardNumberTypeError" : "CardNumber.Type.Error",
+                "DateIncorrect" : "CardExpDate.Incorrect.Error",
+                "DatePast" : "CardExpDate.Past.Error",
+                "SecureCodeError" : "CardSecurityCode.Empty.Error"
+        };
+
+    PCI.isMobile = function(){
+					return true;
+			}
+
+	PCI.IEPolyfill = function () {
+		// IE Polyfill
+		if(doc.addEventListener)return;		//No need to polyfill
+
+		function addEvent(on, fn, self){
+			return (self = this).attachEvent('on' + on, function(e){
+				var e = e || win.event;
+				e.preventDefault  = e.preventDefault  || function(){e.returnValue = false}
+				e.stopPropagation = e.stopPropagation || function(){e.cancelBubble = true}
+				fn.call(self, e);
+			});
+		}
+		function addListen(obj, i){
+			if(i = obj.length)while(i--)obj[i].addEventListener = addEvent;
+			else obj.addEventListener = addEvent;
+			return obj;
+		}
+
+		addListen([doc, win]);
+		if('Element' in win)win.Element.prototype.addEventListener = addEvent;			//IE8
+
+	};
+
+	PCI.classListPolyfill = function () {
+		if(!doc.getElementsByClassName) {
+		    doc.getElementsByClassName = function(className) {
+
+		      var r = className.split(" ");
+		      for(var i = r.length; i--;) {
+		        if(r[i] === "") {
+		          r.splice(i, 1);
+		        }
+		      }
+
+		      var c;
+		      if(r.length === 1)
+		        c = r[0]
+		      else {
+		        c = r.join('.');
+		      }
+
+		      return this.querySelectorAll("." + c);
+		    };
+		  Element.prototype.getElementsByClassName = doc.getElementsByClassName;
+		}
+
+		if (typeof win.Element === "undefined" || "classList" in doc.documentElement) return;
+
+		var prototype = Array.prototype,
+		    push = prototype.push,
+		    splice = prototype.splice,
+		    join = prototype.join;
+
+		function DOMTokenList(el) {
+		  this.el = el;
+		  // The className needs to be trimmed and split on whitespace
+		  // to retrieve a list of classes.
+		  var classes = el.className.replace(/^\s+|\s+$/g,'').split(/\s+/);
+		  for (var i = 0; i < classes.length; i++) {
+		    push.call(this, classes[i]);
+		  }
+		};
+
+		DOMTokenList.prototype = {
+		  add: function(token) {
+		    if(this.contains(token)) return;
+		    push.call(this, token);
+		    this.el.className = this.toString();
+		  },
+		  contains: function(token) {
+		    return this.el.className.indexOf(token) != -1;
+		  },
+		  item: function(index) {
+		    return this[index] || null;
+		  },
+		  remove: function(token) {
+		    if (!this.contains(token)) return;
+		    for (var i = 0; i < this.length; i++) {
+		      if (this[i] == token) break;
+		    }
+		    splice.call(this, i, 1);
+		    this.el.className = this.toString();
+		  },
+		  toString: function() {
+		    return join.call(this, ' ');
+		  },
+		  toggle: function(token) {
+		    if (!this.contains(token)) {
+		      this.add(token);
+		    } else {
+		      this.remove(token);
+		    }
+
+		    return this.contains(token);
+		  }
+		};
+
+		win.DOMTokenList = DOMTokenList;
+
+		function defineElementGetter (obj, prop, getter) {
+		    if (Object.defineProperty) {
+		        Object.defineProperty(obj, prop,{
+		            get : getter
+		        });
+		    } else {
+		        obj.__defineGetter__(prop, getter);
+		    }
+		}
+
+		defineElementGetter(Element.prototype, 'classList', function () {
+		  return new DOMTokenList(this);
+		});
+	};
+
+
+	PCI.popover = (function () {
+		// Popover
+		var Popover = function (settings) {
+		    settings = (settings && typeof settings === 'object') && settings || {};
+
+		    this.rootContainer = settings.rootContainer || doc.getElementsByTagName('body')[0];
+		    this.target = settings.target;
+		    this.index = settings.index;
+		    this.width = settings.width;
+		    this.placement = settings.placement;
+		    this.content = settings.content;
+		    this.shiftVertical = settings.shiftVertical;
+		    this.shiftHorizontal = settings.shiftHorizontal;
+		    this.errorHandler = settings.errorHandler;
+		  };
+
+		  Popover.prototype = {
+		    show: function () {
+		      try {
+		        var div = doc.createElement('div'),
+		            targetCords = this.target.getBoundingClientRect(),
+		            rootContainerCords = this.rootContainer.getBoundingClientRect(),
+		            top = 0,
+		            left = 0;
+
+		        div.innerHTML = [
+		          '<div class="ct-popover ct-popover-' + this.placement + ' ct-popover' + this.index + '">',
+		            '<div class="ct-popover-arrow"></div>',
+		            '<div class="ct-popover-content">' + (this.content || '') + '</div>',
+		          '</div>'
+		        ].join('');
+
+		        this.element = this.rootContainer.appendChild(div.children[0]);
+
+		        if (this.placement === 'right') {
+		          top = (targetCords.top - rootContainerCords.top) - (this.element.offsetHeight / 2) + (this.target.offsetHeight / 2) + 8;
+		          left = (targetCords.left - rootContainerCords.left) + this.target.offsetWidth + 25;
+		        }
+		        else {
+		          top = (targetCords.top - rootContainerCords.top) - this.element.offsetHeight - 10;
+		          left = (targetCords.left - rootContainerCords.left) - (this.element.offsetWidth / 2 - this.target.offsetWidth / 2);
+		        }
+
+		        top += (parseInt(this.shiftVertical, 10) || 0);
+		        left += (parseInt(this.shiftHorizontal, 10) || 0);
+
+		        this.element.style.top = top + 'px';
+		        this.element.style.left = left + 'px';
+
+		        if (this.width) {
+		          this.element.style.width = this.width + 'px';
+		        }
+
+		        this.element.className = this.element.className + ' ct-popover-fade-in';
+		      }
+		      catch (e) {
+		        if (this.errorHandler) {
+		          this.errorHandler(e, '/components/popover/settings/show()');
+		        }
+		        else {
+		          throw e;
+		        }
+		      }
+		    },
+		    destroy: function () {
+		      try {
+		        if (this.element && this.element.parentNode) {
+		          var parentNode = this.element.parentNode;
+
+		          if (parentNode && typeof parentNode === 'object' && typeof parentNode.removeChild === 'function') {
+		            this.element.parentNode.removeChild(this.element);
+		            this.element = null;
+
+		          } else {
+		            // in case of IE8
+		            this.rootContainer.removeChild(this.element);
+		            this.element = null;
+		          }
+		        }
+		      }
+		      catch (e) {
+		        if (this.errorHandler) {
+		          this.errorHandler(e, '/components/popover/settings/show()');
+		        }
+		        else {
+		          throw e;
+		        }
+		      }
+		    },
+		  };
+
+		  return Popover;
+	  })();
+
+	  PCI.validator = (function () {
+	  	 // Validation
+	  	var
+	  	   acceptedCcDefinitions = ['mc', 'visa', 'visa-elec', 'amex', 'maestro', 'laser', 'switch', 'dinerscard', 'discover'],
+	  	   expiryDateRegExp = new RegExp('(^[0-9]{4}$)|(^[0-9]{2}\/[0-9]{2}$)'),
+	  	   securityCodeRegExp = new RegExp('(^[0-9]{3,4}$)'),
+	  	   cardHolderNameRegExp = new RegExp('^[^0-9]+$'),
+	  	   ccDefinitions = {
+	  		 'mc': {
+	  		   regex: /^(\s?)(5[1-5]|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)/,
+	  		   cvc: true
+	  		 },
+	  		 'visa': {
+	  		   regex: /^(\s?)4/,
+	  		   cvc: true
+	  		 },
+	  		 'visa-elec': {
+	  		   regex: /^(\s?)(4026|417500|4508|4844|4913|4917)/,
+	  		   cvc: true
+	  		 },
+	  		 'amex': {
+	  		   regex: /^(\s?)3(4|7)/,
+	  		   cvc: true
+	  		 },
+	  		 'maestro': {
+	  		   regex: /^(\s?)(5018|5020|5160|5038|5893|6304|6759|6761|6762|6763)/,
+	  		   cvc: false
+	  		 },
+	  		 'laser': {
+	  		   regex: /^(\s?)(6304|6706|6771|6709)/,
+	  		   cvc: true
+	  		 },
+	  		 'switch': {
+	  		   regex: /^(\s?)49/,
+	  		   cvc: true
+	  		 },
+	  		 'dinerscard': {
+	  		   regex: /^(\s?)(300|301|302|303|304|305|36|38)/,
+	  		   cvc: true
+	  		 },
+	  		 'discover': {
+	  		   regex: /^(\s?)(6011|65)/,
+	  		   cvc: true
+	  		 }
+	  	   };
+
+		   return {
+		  	   setAcceptedCcDefinitions: function (data) {
+		  		 acceptedCcDefinitions = data;
+		  		 return this;
+		  	   },
+		  	   getCCType: function(value) {
+		  		 try {
+		  		   var ccType;
+
+		  		   for (var name in ccDefinitions) {
+		  			 if ((ccDefinitions[name].regex).test(value) && acceptedCcDefinitions.indexOf(name) >= 0) {
+		  			   ccType = name;
+		  			 }
+		  		   }
+
+		  		   return ccType;
+		  		 }
+		  		 catch (e) {}
+		  	   },
+		  	   isValidCVC: function(CCType) {
+		  		 try {
+		  		   if (ccDefinitions.hasOwnProperty(CCType)) {
+		  			 return ccDefinitions[CCType] && ccDefinitions[CCType].cvc;
+		  		   }
+		  		   else {
+		  			 return true;  // when cctype is wrong, valid CCV to avoid allow incorect ccType
+		  		   }
+		  		 }
+		  		 catch (e) {}
+		  	   },
+		  	   ccNumberCheck: function (value) {
+		  		 if (/[^0-9 \-]+/.test(value)) {
+		  		   return false;
+		  		 }
+
+		  		 var
+		  		   nCheck = 0,
+		  		   nDigit = 0,
+		  		   bEven = false,
+		  		   n, cDigit;
+
+		  		 value = value.replace(/\D/g, '');
+
+		  		 if (value.length < 13 || value.length > 19) {
+		  		   return false;
+		  		 }
+
+		  		 for (n = value.length - 1; n >= 0; n--) {
+		  		   cDigit = value.charAt(n);
+		  		   nDigit = parseInt(cDigit, 10);
+
+		  		   if (bEven) {
+		  			 if ((nDigit *= 2) > 9) {
+		  			   nDigit -= 9;
+		  			 }
+		  		   }
+
+		  		   nCheck += nDigit;
+		  		   bEven = !bEven;
+		  		 }
+
+		  		 return (nCheck % 10) === 0;
+		  	   },
+		  	   getPaymentTypesHtml: function () {
+		  		 var html = [];
+
+		  		 for (var i = acceptedCcDefinitions.length - 1; i >= 0; i--) {
+		  		   html.push('<span class="ct-floatl ct-credit-card ct-credit-card-type-' + acceptedCcDefinitions[i] + '"></span>');
+		  		 }
+
+		  		 return html.join('');
+		  	   },
+		  	   // Validate data
+		  	   // @param (object) data - fields with values to valiate
+		  	   // @param (boolean) forceAll - whether consider in all fields in validation (true), or just fields contained in first parameter (false)
+		  	   // return (object)
+		  	   validate: function (data, forceAll) {
+		  		 try {
+		  		   var
+		  		   errors = {},
+		  		   ccType = this.getCCType(data.cardNumber);
+
+		  		   if (forceAll || data.hasOwnProperty('cardNumber')) {
+		  			 if (!data.cardNumber) {
+		  			   errors.cardNumber = CT.ABE.Lang.CardNumberEmptyField;
+		  			   errors.cardNumberError = CT.ABE.LangErrorCode.CardNumberEmptyField;
+		  			 }
+		  			 else if (data.cardNumber.length < 13 || data.cardNumber.length > 16 || !this.ccNumberCheck(data.cardNumber)) {
+		  			   errors.cardNumber = CT.ABE.Lang.CardNumberError;
+		  			   errors.cardNumberError = CT.ABE.LangErrorCode.CardNumberError;
+		  			 }
+		  			 else if (!ccType) {
+		  			   errors.cardNumber = '<div>' + CT.ABE.Lang.CardNumberTypeError + '</div>' + '<div class="ct-credit-card-types">';
+		  			   errors.cardNumber += this.getPaymentTypesHtml();
+		  			   errors.cardNumber += '</div>';
+		  			 }
+		  		   }
+
+		  		   if (forceAll || data.hasOwnProperty('cardHolderName')) {
+		  			 if (!data.cardHolderName) {
+		  			   errors.cardHolderName = CT.ABE.Lang.CardNameEmptyField;
+		  			   errors.cardHolderNameError = CT.ABE.LangErrorCode.CardNameEmptyField;
+		  			 }
+		  			 else if (!cardHolderNameRegExp.test(data.cardHolderName)) {
+		  			   errors.cardHolderName = CT.ABE.Lang.CardNameError;
+		  			   errors.cardHolderNameError = CT.ABE.LangErrorCode.CardNameError;
+		  			 }
+		  		   }
+
+		  		   if (data.hasOwnProperty('expiryDateMonth') || data.hasOwnProperty('expiryDateYear')) {
+		  			 var now = new Date();
+		  			 var currentYear = (now.getFullYear() || '').toString().slice(-2);
+		  			 if (!data.expiryDateMonth) {
+		  			   errors.expiryDateMonth = true;
+		  			 }
+
+		  			 if (!data.expiryDateYear) {
+		  			   errors.expiryDateYear = true;
+		  			 }
+
+		  			 if (errors.expiryDateMonth || errors.expiryDateYear) {
+		  			   errors.expiryDate = CT.ABE.Lang.DateIncorrect;
+		  			   errors.expiryDateError = CT.ABE.LangErrorCode.DateIncorrect;
+		  			 }
+		  			 else if (!data.expiryDateMonth || !data.expiryDateYear || (/[^0-9]+/).test(data.expiryDateMonth) || (parseInt(data.expiryDateYear, 10) < parseInt(currentYear, 10))) {
+		  			   errors.expiryDate = CT.ABE.Lang.DateIncorrect;
+		  			   errors.expiryDateError = CT.ABE.LangErrorCode.DateIncorrect;
+		  			 }
+		  			 else if (+new Date('20' + data.expiryDateYear, parseInt(data.expiryDateMonth, 10) - 1, 1) < +new Date(now.getFullYear(), now.getMonth(), 1)) {
+		  			   errors.expiryDate = CT.ABE.Lang.DatePast;
+		  			   errors.expiryDateError = CT.ABE.LangErrorCode.DatePast;
+		  			 }
+		  		   }
+		  		   else if (forceAll || data.hasOwnProperty('expiryDate')) {
+		  			 if (!data.expiryDate) {
+		  			   errors.expiryDate = CT.ABE.Lang.DateIncorrect;
+		  			   errors.expiryDateError = CT.ABE.LangErrorCode.DateIncorrect;
+		  			 }
+		  			 else if (!expiryDateRegExp.test(data.expiryDate)) {
+		  			   errors.expiryDate = CT.ABE.Lang.DateIncorrect;
+		  			   errors.expiryDateError = CT.ABE.LangErrorCode.DateIncorrect;
+		  			 }
+		  		   }
+
+		  		   if (forceAll || data.hasOwnProperty('seriesCode')) {
+		  			 if (this.isValidCVC(ccType) && !data.seriesCode) {
+		  			   errors.seriesCode = CT.ABE.Lang.SecureCodeError;
+		  			   errors.seriesCodeError = CT.ABE.LangErrorCode.SecureCodeError;
+		  			 }
+		  		   }
+
+		  		   if (forceAll || data.hasOwnProperty('tc')) {
+		  			 if (!data.tc) {
+		  			   errors.tc = CT.ABE.Lang.TCError;
+		  			 }
+		  		   }
+
+		  		   return errors;
+		  		 }
+		  		 catch (e) {
+
+		  		 }
+		  	   }
+		   }
+
+	  })();
+
+	  PCI.init = function () {
+
+		  var tagName = {
+		  	'cardNumber': 'ccNumber',
+		  	'cardName': 'ccName',
+		  	'month': 'ccMonth',
+		  	'year': 'ccYear',
+		  	'cvc': 'ccCVC',
+		  	'tc': 'ccTermCond'
+		  }
+
+		  var monthSelectIsClosed = true;
+		  var yearSelectIsClosed = true;
+
+
+		  var cardNumberInput = doc.getElementById('cardNumber');
+		  var cardNameInput = doc.getElementById('cardName');
+		  var seriesCodeInput = doc.getElementById('seriesCode');
+		  var expiryDateMonthSelect = doc.getElementById('expiryDateMonth');
+		  var expiryDateYearSelect = doc.getElementById('expiryDateYear');
+		  var form = doc.getElementById('ct_secure_form');
+		  var inputTC = doc.getElementById('ct_terms_conditions');
+		  var inputTCLabel = doc.getElementById('labelInput');
+		  var questionSign = doc.getElementById('infoSecureCode');
+		  var creditCardType = doc.getElementById('ctCreditCardType');
+		  var popoverInstance;
+		  var chkTCsElement = doc.getElementById('chkTCs');
+		  var chkTCs = (chkTCsElement) ? chkTCsElement.value : 'false';
+		  var mobileFormErrors = [];
+
+		  cardNumberInput.addEventListener("blur", function(){
+		  	validateCardNumber();
+			checkFormFullyValidDCC();
+		  	tag(tagName.cardNumber, 'leave');
+		  }, false);
+		  cardNumberInput.addEventListener("keyup", onChangeCardNumber, false);
+		  cardNumberInput.addEventListener("keydown", function(e){
+		  	if(!e.ctrlKey || !e.metaKey && !e.keyCode === 86)
+		  		tag(tagName.cardNumber, 'type');
+		  }, false);
+		  cardNumberInput.addEventListener("click", function(){tag(tagName.cardNumber, 'enter')}, false);
+		  cardNumberInput.addEventListener("paste", function(){tag(tagName.cardNumber, 'paste')}, false);
+
+		  cardNameInput.addEventListener("blur", function(){
+		  	validateCardName();
+			checkFormFullyValidDCC();
+		  	tag(tagName.cardName, 'leave');
+		  }, false);
+		  cardNameInput.addEventListener("keyup", onChangeCardName, false);
+		  cardNameInput.addEventListener("keydown", function(e){
+		  	if(!e.ctrlKey || !e.metaKey && !e.keyCode === 86){
+		  		tag(tagName.cardName, 'type')
+		  	}
+		  }, false);
+		  cardNameInput.addEventListener("click", function(){tag(tagName.cardName, 'enter')}, false);
+		  cardNameInput.addEventListener("paste", function(){tag(tagName.cardName, 'paste')}, false);
+
+		  seriesCodeInput.addEventListener("blur", function(){
+		  	validateSeriesCode();
+			checkFormFullyValidDCC();
+		  	tag(tagName.cvc, 'leave')
+		  }, false);
+		  seriesCodeInput.addEventListener("keyup", onChangeSeriesCode, false);
+		  seriesCodeInput.addEventListener("keydown", function(e){
+		  	if(!e.ctrlKey || !e.metaKey && !e.keyCode === 86){
+		  		tag(tagName.cvc, 'type');
+		  	}
+
+		  }, false);
+		  seriesCodeInput.addEventListener("click", function(){tag(tagName.cvc, 'enter')}, false);
+		  seriesCodeInput.addEventListener("paste", function(){tag(tagName.cvc, 'paste')}, false);
+
+		  expiryDateMonthSelect.addEventListener("blur", validateDate, false);
+		  expiryDateMonthSelect.addEventListener("change", onChangeDate, false);
+          expiryDateMonthSelect.addEventListener("focus", function(){
+              cleanAlert(expiryDateMonthSelect, 'alertDate');
+              cleanAlert(expiryDateYearSelect, 'alertDate');
+			  checkFormFullyValidDCC();
+          }, false);
+		  expiryDateMonthSelect.addEventListener("change", function(){tag(tagName.month, 'select')}, false);
+		  expiryDateMonthSelect.addEventListener("click", function(){
+		  	monthSelectIsClosed = !monthSelectIsClosed;
+		  	if(!monthSelectIsClosed){
+		  		tag(tagName.month, 'enter');
+		  	}
+
+		  }, false);
+
+		  expiryDateYearSelect.addEventListener("blur", validateDate, false);
+		  expiryDateYearSelect.addEventListener("change", onChangeDate, false);
+          expiryDateYearSelect.addEventListener("focus", function(){
+              cleanAlert(expiryDateYearSelect, 'alertDate');
+              cleanAlert(expiryDateMonthSelect, 'alertDate');
+   			  checkFormFullyValidDCC();
+          }, false);
+		  expiryDateYearSelect.addEventListener("change", function(){tag(tagName.year, 'select')}, false);
+		  expiryDateYearSelect.addEventListener("click", function(){
+		  	yearSelectIsClosed = !yearSelectIsClosed;
+		  	if(!yearSelectIsClosed){
+		  		tag(tagName.year, 'enter');
+		  	}
+
+		  }, false);
+
+		  form.addEventListener("submit", onSubmitForm, false);
+          form.addEventListener("keydown", function(e){
+			  if(e.keyCode === 13){
+				  e.preventDefault();
+				  e.stopPropagation();
+			  }
+		  });
+
+		  if(inputTCLabel!=null) {
+			inputTCLabel.addEventListener("click", onClickTC, false);
+		  }
+
+		  questionSign.addEventListener("mouseover", showPopover, false);
+		  questionSign.addEventListener("mouseout", hidePopover, false);
+
+
+
+
+
+
+		validateCardNumber();
+		onChangeCardNumber();
+		validateCardName();
+		validateDate();
+		validateSeriesCode();
+		
+
+	//(!$tokens.get("sendRequest") && !$tokens.get("authStart") && !$tokens.get("sendAuth") )
+
+
+		  function cleanAlert(element, idAlert){
+				if (PCI.isMobile()) {
+					var parentElem = document.getElementsByClassName(getInputParentElement(idAlert))[0];
+					if (parentElem) parentElem.classList.remove('ct-pci-error-border');
+					if (mobileFormErrors.length === 1 && mobileFormErrors.indexOf('ct-pci-date') > -1) {
+						document.getElementById('ct-pci-error-container').classList.remove('active');
+					}
+				}
+
+				if(element.classList.contains('ct-error'))
+				element.classList.remove('ct-error');
+				document.getElementById(idAlert).innerHTML = '';
+		  }
+
+		  function showPopover(){
+		  	if(!popoverInstance){
+		  	var pContent = questionSign.getAttribute('ct-popover');
+		  	var pClass = questionSign.getAttribute('ct-popover-class');
+		  	var pPlacement = questionSign.getAttribute('ct-popover-placement');
+		  	var pWidth = questionSign.getAttribute('ct-popover-width');
+        var pShiftVertical = questionSign.getAttribute('ct-popover-shift-vertical');
+        var pShiftHorizontal = questionSign.getAttribute('ct-popover-shift-horizontal');
+		  	popoverInstance = new PCI.popover({
+		  	 	'content': '<div' + ((pClass) ? ' class="' + pClass + '"' : '') + '>' + pContent + '</div>',
+		  		'index': 3,
+		  		'placement': pPlacement,
+		  		'width': pWidth,
+		  		'target': questionSign,
+          'shiftVertical': pShiftVertical,
+          'shiftHorizontal': pShiftHorizontal
+		  	});
+
+		  	popoverInstance.show();
+		  	}
+
+		  }
+
+		  function hidePopover(){
+		  	if(popoverInstance){
+		  		popoverInstance.destroy();
+		  		popoverInstance = undefined;
+		  	}
+		  }
+
+		  function onClickTC(){
+		  	inputTC.checked = !inputTC.checked;
+		  	if(inputTCLabel.classList.contains('ct-error')){
+		  		inputTCLabel.classList.remove('ct-error');
+		  		doc.getElementById('alertTC').innerHTML = '';
+		  	}
+		  }
+
+		  function validateCardNumber(err){
+		  	if(cardNumberInput.value.length !== 0){
+				if(typeof err == "undefined" || err === undefined) {
+					var err = PCI.validator.validate({'cardNumber': cardNumberInput.value});
+				}
+		  		if(err && err.hasOwnProperty('cardNumber')){
+		  			setError('alertCardNumber', cardNumberInput, err.cardNumber, err.cardNumberError);
+		  			tag(tagName.cardNumber, 'error');
+		  		} else {
+		  			setCheck('alertCardNumber', cardNumberInput);
+		  		}
+		  	}
+		  }
+
+		  function onChangeCardNumber(){
+		  	if(cardNumberInput.classList.contains('ct-error')){
+		  		var err = PCI.validator.validate({'cardNumber': cardNumberInput.value});
+		  		if(!err || isEmpty(err)){
+		  			setCheck('alertCardNumber', cardNumberInput);
+		  		}
+		  	}
+
+		  	var ccType = PCI.validator.getCCType(cardNumberInput.value);
+		  	if (ccType) {
+		  		creditCardType.className = 'ct-credit-card-number-type ct-credit-card-number-type-' + ccType;
+		  	}
+		  	else {
+		  		creditCardType.className = 'ct-credit-card-number-type';
+		  	}
+		  	
+		  }
+
+		  function validateCardName(err){
+		  	if(cardNameInput.value.length !== 0){
+				if(typeof err == "undefined" || err === undefined) {
+					var err = PCI.validator.validate({'cardHolderName': cardNameInput.value});
+				}
+		  		if(err && err.hasOwnProperty('cardHolderName')){
+		  			setError('alertCardName', cardNameInput, err.cardHolderName, err.cardHolderNameError);
+		  			tag(tagName.cardName, 'error');
+		  		} else {
+		  			setCheck('alertCardName', cardNameInput);
+		  		}
+		  	}
+		  }
+
+		  function onChangeCardName(){
+		  	if(cardNameInput.classList.contains('ct-error')){
+		  		var err = PCI.validator.validate({'cardHolderName': cardNameInput.value});
+		  		if(!err || isEmpty(err)){
+		  			setCheck('alertCardName', cardNameInput);
+		  		}
+		  	}
+		  }
+
+		  function validateSeriesCode(err){
+		  	if(seriesCodeInput.value.length !== 0){
+				if(typeof err == "undefined" || err === undefined) {
+			  		var err = PCI.validator.validate({'seriesCode': seriesCodeInput.value});
+				}
+		  		if(err && err.hasOwnProperty('seriesCode')){
+		  			setError('alertSeriesCode', seriesCodeInput, err.seriesCode, err.seriesCodeError);
+		  			tag(tagName.cvc, 'error');
+		  		} else {
+		  			setCheck('alertSeriesCode', seriesCodeInput);
+		  		}
+		  	}
+			checkFormFullyValidDCC();
+		  }
+
+		  function onChangeSeriesCode(){
+		  	if(seriesCodeInput.classList.contains('ct-error')){
+		  		var err = PCI.validator.validate({'seriesCode': seriesCodeInput.value});
+		  		if(!err || isEmpty(err)){
+		  			setCheck('alertSeriesCode', seriesCodeInput);
+		  		}
+		  	}
+		  }
+
+		  function validateDate(){
+		  	var data = {'expiryDateYear': expiryDateYearSelect.value, 'expiryDateMonth': expiryDateMonthSelect.value};
+		  	checkValidateDate(data, expiryDateMonthSelect, 'alertDate');
+		  	checkValidateDate(data, expiryDateYearSelect, 'alertDate');
+		  }
+
+		  function onChangeDate(){
+		  	var data = {'expiryDateYear': expiryDateYearSelect.value, 'expiryDateMonth': expiryDateMonthSelect.value};
+		  	selectChangeDate(data, expiryDateMonthSelect, 'alertDate');
+		  	selectChangeDate(data, expiryDateYearSelect, 'alertDate');
+		  }
+
+		  function checkValidateDate(data, input, idAlert, err){
+		  	if(expiryDateYearSelect.value.length !== 0 || expiryDateMonthSelect.value.length !== 0 ){
+				if(typeof err == "undefined" || err === undefined) {
+			  		var err = PCI.validator.validate(data);
+				}
+		  		if(err && err.hasOwnProperty('expiryDate')){
+		  			setError('alertDate', input, err.expiryDate, err.expiryDateError);
+		  		} else {
+		  			setCheck('alertDate', input);
+		  		}
+		  	}
+		  }
+
+		  function selectChangeDate(data, input, idAlert){
+
+		  	if(input.classList.contains('ct-error')){
+		  		var err = PCI.validator.validate(data);
+		  		if(!err || isEmpty(err)){
+		  			setCheck(idAlert, input);
+		  		}
+		  	}
+		  }
+		  
+		  function checkFormFullyValidDCC() {
+			  //Only check form is fully valid if DCC is enabled.
+		      var enableDCC = document.getElementById('enableDCC').value;
+			  if(enableDCC!="true") {
+				  return;
+			  }
+			  
+			  if(typeof PCI.timerDCC == 'undefined') {
+				clearTimeout(PCI.timerDCC);
+				PCI.timerDCC = undefined;				  
+			  }
+				  
+			  PCI.timerDCC = setTimeout(function() {
+					
+					var cardNumber = cardNumberInput.value;
+					//DCC is enabled, check to see if form fully filled in & valid.
+					var err = PCI.validator.validate({
+						'cardNumber': cardNumber,
+						'cardHolderName': cardNameInput.value,
+						'seriesCode': seriesCodeInput.value,
+						'expiryDateYear': expiryDateYearSelect.value, 
+						'expiryDateMonth': expiryDateMonthSelect.value });
+			
+                                        //If CardNumber & Cardholdername are populated then:
+                                        if( (typeof err.cardHolderName == 'undefined') &&
+                                            (typeof err.cardNumber == 'undefined') ) {
+
+						// Check we haven't sent an event for this credit card already.
+						var creditCardValidForm = document.getElementById('creditCardValidForm').value;
+
+						if(cardNumber != creditCardValidForm) {
+					  
+							// we haven't, so submit form, so DCC check can take place.
+							document.getElementById('creditCardValidForm').value = cardNumber;
+							document.getElementById('submitDCC').value = 'true';
+							form.submit();		  
+						}
+					}		
+					PCI.timerDCC = undefined;
+					
+				}, 200);  
+		  }
+			
+			
+		function validate () {
+			var err = PCI.validator.validate({
+				'cardNumber': cardNumberInput.value,
+				'cardHolderName': cardNameInput.value,
+				'seriesCode': seriesCodeInput.value,
+				'expiryDateYear': expiryDateYearSelect.value,
+				'expiryDateMonth': expiryDateMonthSelect.value,
+				'tc': (chkTCs === 'true') ? inputTC.checked : true
+			}, true) || {};
+
+			if(Object.keys(err).length > 0){
+
+				if(err.hasOwnProperty('cardNumber')) {
+					setError('alertCardNumber', cardNumberInput, err.cardNumber, err.cardNumberError);
+				}
+				if(err.hasOwnProperty('cardHolderName')) {
+					setError('alertCardName', cardNameInput, err.cardHolderName, err.cardHolderNameError);
+				}
+				if(err.hasOwnProperty('expiryDate')) {
+					setError('alertDate', expiryDateMonthSelect, err.expiryDate, err.expiryDateError);
+					setError('alertDate', expiryDateYearSelect, err.expiryDate, err.expiryDateError);
+				}
+				if(err.hasOwnProperty('seriesCode')) {
+					setError('alertSeriesCode', seriesCodeInput, err.seriesCode, err.seriesCodeError);
+				}
+				if(err.hasOwnProperty('tc')) {
+					setIconError('alertTC');
+					inputTCLabel.classList.add('ct-error');
+				} else {
+					if(chkTCs === 'true') {
+						doc.getElementById('alertTC').innerHTML = '';
+					}
+				}
+				a11yFormErrorHandler.onErrorSearchForm(err, a11yFormErrorHandler.inputs || {})
+				return false;
+			}
+			else {
+				parent.postMessage('{"msg": "OTA_VehResRQ" , "action": "validation", "type": "validationSuccess" }','*');
+				return true;
+			}
+		};
+
+		function onSubmitForm(event) {
+			if (event) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+
+			if(validate()) {
+				form.submit();
+			}
+		}
+
+		function getInputParentElement(id) {
+			if (id === 'alertCardNumber') {
+				return 'ct-pci-card-number';
+			} else if (id === 'alertCardName') {
+				return 'ct-pci-card-name';
+			} else if (id === 'alertSeriesCode') {
+				return 'ct-pci-card-cvc';
+			} else if (id === 'alertDate') {
+				return 'ct-pci-date';
+			} else {
+				return '';
+			}
+		}
+
+		function mobileFormContainsError(id) {
+			return mobileFormErrors.indexOf(id) !== -1;
+		}
+
+		  function setError(id, input, error, errorCode){
+				errorMsg = error || '';
+				parent.postMessage('{"msg": "OTA_VehResRQ" , "action": "validation", "type": "validationError", "error": { "input": "'+input.id+'", "code": "'+errorCode+'", "msg": "'+errorMsg+'"} }','*');
+
+				if (PCI.isMobile()) {
+					var parentElemId = getInputParentElement(id);
+					if (!mobileFormContainsError(parentElemId) || (id === 'alertDate' && mobileFormContainsError(parentElemId))) {
+						document.getElementsByClassName(parentElemId)[0].classList.add('ct-pci-error-border');
+						document.getElementById('ct-pci-error-container').classList.add('active');
+						if (!mobileFormContainsError(parentElemId)) mobileFormErrors.push(parentElemId);
+					}
+				} else {
+					input.classList.add("ct-error");
+					doc.getElementById(id).innerHTML= getErrorTemplate(error || '');
+					showFirstHoverMessage();
+					setHover();
+				}
+		  }
+
+          function setIconError(id){
+              if(!PCI.isMobile()){
+                  var html =[];
+        		  html.push('<span class=\"ct-indicator ct-invalid ct-wrapper-tooltip\">');
+        		  html.push('<i class=\"ct-icon-warning-sign\"></i></span>');
+			      doc.getElementById(id).innerHTML= html.join('');
+              }
+		  }
+
+		  function setHover(){
+		  	var icons = doc.getElementsByClassName('ct-icon-warning-sign');
+		  	for(var i=0; i < icons.length; i++){
+		  	 (function (i) {
+		  	 icons[i].parentNode.addEventListener("mouseout", onMouseOut, true);
+		  	 icons[i].parentNode.addEventListener("mouseover", removeHoverMessage, false);
+		  	 }(i))
+		  	}
+		  }
+
+		  var messageIsHover = false;
+		  var time;
+
+		  function removeHoverMessage(){
+		  	messageIsHover = true;
+		  	if(doc.getElementsByClassName('ct-wrapper-tooltip ct-hover').length >0){
+		  		doc.getElementsByClassName('ct-wrapper-tooltip ct-hover')[0].classList.remove('ct-hover')	;
+		  		clearTimeout(time);
+		  	}
+		  }
+
+		  function showFirstHoverMessage(){
+		  	if(doc.getElementsByClassName('ct-wrapper-tooltip ct-hover').length === 0){
+		  		doc.getElementsByClassName('ct-data-tooltip-error ')[0].parentNode.classList.add('ct-hover');
+		  	}
+		  }
+
+		  function onMouseOut(){
+		  	messageIsHover = false;
+		  	time = setTimeout(function(){
+		  		if(!messageIsHover){
+		  			showFirstHoverMessage();
+		  		}
+		  	}, 1000);
+
+		  }
+
+		  function setCheck(id, input){
+		  	if (PCI.isMobile()) {
+		  		var parentElemId = getInputParentElement(id);
+					mobileFormErrors = mobileFormErrors.filter(function(item) { return item !== parentElemId });
+					document.getElementsByClassName(parentElemId)[0].classList.remove('ct-pci-error-border');
+					if (mobileFormErrors.length === 0) {
+						document.getElementById("ct-pci-error-container").classList.remove('active');
+					}
+				}
+		  	input.classList.remove("ct-error");
+		  	doc.getElementById(id).innerHTML= getCheckTemplate();
+		  }
+
+		  function getErrorTemplate(message){
+		  	var html =[];
+		  	html.push('<span class=\"ct-indicator ct-invalid ct-wrapper-tooltip\">');
+		  	html.push('<span class=\"ct-data-tooltip-error\"><div class=\"ct-hover-message\">'+message+'</div></span><i class=\"ct-icon-warning-sign\"></i></span>');
+		  	return html.join('');
+		  }
+
+		  function getCheckTemplate(){
+		  	var html =[];
+		  	html.push('<span class="ct-indicator ct-valid"><i class="ct-icon-checkmark"></i></span>');
+		  	return html.join('');
+		  }
+
+		  function isEmpty(obj) {
+		  	for(var prop in obj) {
+		   		if(obj.hasOwnProperty(prop))
+		   			return false;
+		   		}
+		   	return true;
+		  }
+
+		  function tag(name, detail){
+			parent.postMessage('{"msg": "OTA_VehResRQ" , "action": "tag", "name": "' + name + '", "detail": "' + detail + '"}', '*');
+		  }
+
+			PCI.tag = tag;
+			PCI.validate = validate;
+			PCI.onSubmitForm = onSubmitForm;
+	  };
+
+	  PCI.IEPolyfill();
+	  PCI.classListPolyfill();
+	  PCI.init();
+
+})(window, document, window.CT || {});
+</script>
+
+<script src="https://songbird.cardinalcommerce.com/cardinalcruise/v1/songbird.js"></script>
+
+<script type="text/javascript">
+
+if(typeof Cardinal == 'undefined') {
+
+
+	//Cardinal is not defined, we can not implement psd2 SCA (Strong customer authentication.
+	document.getElementById("psd2Enabled").value = 'false';
+	PCI.tag('PCIMessage','Cardinal undefined, PSD2 disabled');
+	document.getElementById("logMessage").value = "Cardinal undefined, PSD2 disabled";
+
+
+} else {
+
+   Cardinal.configure({
+       logging: {
+           level: 'off'
+       }
+   });
+
+   Cardinal.on('payments.setupComplete', function(setupCompleteData) {
+
+      // Save 'sessionId' in form so it is passed to Server side code (required for cmpi_lookup)
+      document.getElementById("authSessionID").value = setupCompleteData.sessionId;
+
+   });
+
+
+	Cardinal.setup("init", {
+         jwt: document.getElementById("JWTSessionID").value
+	});
+
+
+	Cardinal.on("payments.validated", function (data, jwt) {
+
+		var isObject = function(obj) {
+			return (obj && typeof obj === 'object');
+		};
+
+		var authErrorMessage = '';
+    	switch(data.ActionCode){
+      		case "SUCCESS":
+      			var cavv = '', eci = '', dsTransactionId = '', xId ='';
+      			// Handle successful transaction, send JWT to backend to verify
+				if (isObject(data)) {
+					if (isObject(data.Payment)) {
+						if (isObject(data.Payment.ExtendedData)) {
+							if ((typeof data.Payment.ExtendedData.CAVV === 'string') && (typeof data.Payment.ExtendedData.ECIFlag === 'string')) {
+								cavv = data.Payment.ExtendedData.CAVV;
+								eci = data.Payment.ExtendedData.ECIFlag;
+							}
+                            if (typeof data.Payment.ExtendedData.DSTransactionId === 'string') {
+                                dsTransactionId = data.Payment.ExtendedData.DSTransactionId;
+                            }
+                            if (typeof data.Payment.ExtendedData.XID === 'string') {
+                                xId = data.Payment.ExtendedData.XID;
+                            }
+                            if (typeof data.Payment.ExtendedData.ThreeDSVersion === 'string') {
+                                threeDsVersion = data.Payment.ExtendedData.ThreeDSVersion;
+                            }
+						}
+					}
+				}
+
+            	if (cavv.length>0) {
+                	document.getElementById("authCAVV").value = cavv;
+            	} else {
+                	document.getElementById("authCAVV").value = "CAV|MISSING";
+            	}
+            	if (eci.length>0) {
+                	document.getElementById("authECI").value = eci;
+            	}
+                if (dsTransactionId.length>0) {
+                    document.getElementById("authDsTransactionId").value = dsTransactionId;
+                }
+                if (xId.length>0) {
+                    document.getElementById("authXId").value = xId;
+                }
+                if (threeDsVersion.length>0) {
+                    document.getElementById("authThreeDsVersion").value = threeDsVersion;
+                }
+
+				//Send message to parent window, that we are starting OTA Message
+				parent.postMessage('{"msg": "OTA_VehResRQ" , "action": "sendMessage"}','*');
+
+				document.getElementById("authComplete").value = 'true';
+				document.getElementById("ct_secure_form").submit();
+				return;
+
+      		case "NOACTION":
+      		    // Handle no actionable outcome
+      		    authErrorMessage = 'NOACTION';
+      		    break;
+
+      		case "FAILURE":
+      		    // Handle failed transaction attempt
+      		    authErrorMessage = 'FAILURE';
+      		    break;
+
+      		//Only care about the ERROR event, if the modal has been displayed.
+			//We can receive ERROR events from Cardinal in other circumstances (not in our auth flow)
+
+         }
+
+        if (authErrorMessage.length > 0) {
+
+            document.getElementById("authCAVV").value = "CAV|" + authErrorMessage;
+
+			//Send message to parent window, that we are starting OTA Message
+			parent.postMessage('{"msg": "OTA_VehResRQ" , "action": "sendMessage"}','*');
+
+			document.getElementById("authComplete").value = 'true';
+			document.getElementById("ct_secure_form").submit();
+			return;
+ 		}
+	});
+
+	Cardinal.complete({
+        Status: "Success"
+    })
+}
+
+</script>
+
+
+<iframe id="Cardinal-collector" height="0" width="0" frameborder="0" src="https://geo.cardinalcommerce.com/DeviceFingerprintWeb/V2/Browser/Render?threatmetrix=true&amp;alias=Default&amp;orgUnitId=5cc1bdf701729d0c881ee4ff&amp;tmEventType=PAYMENT&amp;referenceId=0_d41e5775-152d-403a-a1c9-f32fc237e2b9&amp;geolocation=false&amp;origin=Songbird" style="display: none; position: absolute; top: -1000px; left: -1000px;"></iframe></body></html>
